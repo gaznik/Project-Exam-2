@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "constants";
+import { API_BASE_URL } from "./constants";
 
 export async function makeApiRequest(endpoint, method = 'GET', data = null) {
   const url = `${API_BASE_URL}/${endpoint}`;
