@@ -6,13 +6,10 @@ function Header() {
       <nav>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <a href="">Log in</a>
           </li>
           <li>
-            <a href="">Venues</a>
-          </li>
-          <li>
-            <a href="">Account</a>
+            <a href="">Register</a>
           </li>
         </ul>
       </nav>
