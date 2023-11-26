@@ -1,14 +1,17 @@
 import React from 'react';
-import Venues from './components/Venues';
 import Layout from './components/Layout';
 import './App.css';
+import AppRouter from './components/AppRouter';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
+<Router>
 <Layout>
-<Venues />
+<AppRouter />
 </Layout>
+</Router>
     </div>
   );
 }
