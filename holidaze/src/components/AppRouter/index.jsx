@@ -13,7 +13,7 @@ function AppRouter() {
       <Routes>
          <Route path="/" element={<Home />} /> 
          <Route path="/profile" element={<Profile />} /> 
-         <Route path="/venue/:id" element={VenueDetail} />
+         <Route path="/venues/:id" element={<VenueDetail />} />
          <Route path="/create-venue" element={CreateVenue} />
       </Routes> 
    
