@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { makeApiRequest } from '../../utils/api/apiRequest'; 
 
-function VenueDetail() {
+function VenueDetailsPage() {
   const { id } = useParams(); 
   const [venueDetails, setVenueDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -34,6 +34,12 @@ function VenueDetail() {
               <h2>{venueDetails.name}</h2>
               <p>Description: {venueDetails.description}</p>
               <p>Price: {venueDetails.price}</p>
+              {venueDetails.media && venueDetails.media.length > 0 && (
+                <div>
+                  <p>Image:</p>
+                  <img src={venueDetails.media[0]} alt="Venue" />
+                </div>
+              )}
             </div>
           ) : (
             <p>No details available for this venue.</p>
@@ -44,4 +50,4 @@ function VenueDetail() {
   );
 }
 
-export default VenueDetail;
+export default VenueDetailsPage;
