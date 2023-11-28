@@ -1,7 +1,7 @@
 import { API_BASE_URL } from "./constants";
 
-export async function makeApiRequest(endpoint, method = 'GET', data = null) {
-  const url = `${API_BASE_URL}/${endpoint}`;
+export async function makeApiRequest(endpoint, method = 'GET', data = null, limit = 10, offset = 0) {
+  const url = `${API_BASE_URL}/${endpoint}?limit=${limit}&offset=${offset}`;
 
   const requestOptions = {
     method,

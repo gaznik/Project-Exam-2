@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { makeApiRequest } from '../../utils/api/apiRequest';
-import Search from '../Search'; 
+
 
 function Venues() {
   const [venues, setVenues] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredVenues, setFilteredVenues] = useState([]);
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [venuesPerPage] = useState(10);
 
   useEffect(() => {
     async function fetchVenues() {
       try {
-        const response = await makeApiRequest('venues');
-        setVenues(response);
+        const response = await makeApiRequest(
+          'venues',
+          'GET',
+          null,
+          venuesPerPage,
+          (currentPage - 1) * venuesPerPage,
+         
+        );
+        setVenues(response); 
         setLoading(false);
       } catch (error) {
         console.error('Error fetching venues:', error);
@@ -22,29 +30,30 @@ function Venues() {
     }
 
     fetchVenues();
-  }, []);
+  }, [currentPage, venuesPerPage]);
 
-  useEffect(() => {
-    const filtered = venues.filter((venue) =>
-      venue.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredVenues(filtered);
-  }, [searchQuery, venues]);
-
-  const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
+  const nextPage = () => {
+    setCurrentPage(currentPage + 1);
   };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+ 
 
   return (
     <div>
       <h1>Venues</h1>
-      <Search searchQuery={searchQuery} handleSearch={handleSearch} />
+      
       {loading ? (
         <p>Loading...</p>
       ) : (
         <div>
           <ul>
-            {filteredVenues.map((venue) => (
+            {venues.map((venue) => (
               <li key={venue.id}>
                 <Link to={`/venues/${venue.id}`}>
                   {venue.name} - {venue.location.address}, {venue.location.city}, {venue.location.country}
@@ -52,6 +61,14 @@ function Venues() {
               </li>
             ))}
           </ul>
+          <div>
+            <button onClick={prevPage} disabled={currentPage === 1}>
+              Previous
+            </button>
+            <button onClick={nextPage}>
+              Next
+            </button>
+          </div>
         </div>
       )}
     </div>
