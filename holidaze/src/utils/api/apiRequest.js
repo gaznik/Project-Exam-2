@@ -1,7 +1,8 @@
 import { API_BASE_URL } from "./constants";
 
-export async function makeApiRequest(endpoint, method = 'GET', data = null, limit = 10, offset = 0) {
-  const url = `${API_BASE_URL}/${endpoint}?limit=${limit}&offset=${offset}`;
+export async function makeApiRequest(endpoint, method = 'GET', searchTerm = '', limit = 10, offset = 0) {
+  const encodedSearchTerm = encodeURIComponent(searchTerm);
+  const url = `${API_BASE_URL}/${endpoint}?limit=${limit}&offset=${offset}&search=${encodedSearchTerm}`;
 
   const requestOptions = {
     method,
@@ -9,10 +10,6 @@ export async function makeApiRequest(endpoint, method = 'GET', data = null, limi
       'Content-Type': 'application/json',
     },
   };
-
-  if (data) {
-    requestOptions.body = JSON.stringify(data);
-  }
 
   try {
     const response = await fetch(url, requestOptions);
