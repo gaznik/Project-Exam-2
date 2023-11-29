@@ -4,22 +4,39 @@ import { API_BASE_URL, VENUES_ENDPOINT } from '../../utils/api/constants';
 
 function Search() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [allVenues, setAllVenues] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
+  const chunkSize = 100; 
 
-  const venueUrl = API_BASE_URL + VENUES_ENDPOINT; 
+  const venueUrl = `${API_BASE_URL}${VENUES_ENDPOINT}`;
 
-  async function handleSearch() {
+  async function fetchAllVenues(offset, venuesSoFar = []) {
     try {
-      const response = await fetch(venueUrl);
+      const response = await fetch(`${venueUrl}?offset=${offset}&limit=${chunkSize}`);
       const result = await response.json();
-      handleKeyUp(result);
+      const updatedVenues = [...venuesSoFar, ...result];
+      
+
+      if (result.length === chunkSize) {
+        return fetchAllVenues(offset + chunkSize, updatedVenues);
+        
+      } else {
+        return updatedVenues;
+      }
     } catch (error) {
       console.log(error);
+      return venuesSoFar;
     }
   }
 
-  function handleKeyUp(venues) {
-    const filteredSearch = venues.filter((venue) =>
+  async function handleSearch() {
+    const venues = await fetchAllVenues(0);
+    
+    setAllVenues(venues);
+  }
+
+  function handleKeyUp() {
+    const filteredSearch = allVenues.filter((venue) =>
       venue.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setSearchResult(filteredSearch);
@@ -27,7 +44,13 @@ function Search() {
 
   useEffect(() => {
     handleSearch();
-  }, [searchQuery]);
+  
+  }, []); 
+
+  useEffect(() => {
+    handleKeyUp();
+    
+  }, [searchQuery, allVenues]); 
 
   return (
     <div>
@@ -45,7 +68,6 @@ function Search() {
       {searchQuery ? <DisplaySearchResults venues={searchResult} /> : null}
     </div>
   );
-  
 }
 
 export default Search;
