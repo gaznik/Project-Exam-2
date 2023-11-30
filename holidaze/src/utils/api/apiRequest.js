@@ -1,14 +1,14 @@
 import { API_BASE_URL } from "./constants";
 
-export async function makeApiRequest(endpoint, method = 'GET', searchTerm = '', limit = 10, offset = 0) {
-  const encodedSearchTerm = encodeURIComponent(searchTerm);
-  const url = `${API_BASE_URL}/${endpoint}?limit=${limit}&offset=${offset}&search=${encodedSearchTerm}`;
+export async function makeApiRequest(endpoint, method = 'GET', data = null) {
+  const url = `${API_BASE_URL}${endpoint}`;
 
   const requestOptions = {
     method,
     headers: {
       'Content-Type': 'application/json',
     },
+    body: data ? JSON.stringify(data) : null,
   };
 
   try {
