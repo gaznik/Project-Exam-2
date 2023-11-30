@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useFetchVenues } from '../../utils/hooks/useVenueData'; 
+import { useFetchVenues } from '../../hooks/useVenueData'; 
 
 function Venues() {
   const { venues, loading, currentPage, nextPage, prevPage } = useFetchVenues();
