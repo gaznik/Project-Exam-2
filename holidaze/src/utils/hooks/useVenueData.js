@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { makeApiRequest } from '../api/apiRequest';
+import { fetchVenuesList } from '../../components/Venues/venuesUtil'; 
 
 export function useFetchVenues() {
   const [venues, setVenues] = useState([]);
@@ -10,14 +10,8 @@ export function useFetchVenues() {
   useEffect(() => {
     async function fetchVenues() {
       try {
-        const response = await makeApiRequest(
-          'venues',
-          'GET',
-          null,
-          venuesPerPage,
-          (currentPage - 1) * venuesPerPage,
-        );
-        setVenues(response); 
+        const fetchedVenues = await fetchVenuesList(venuesPerPage, (currentPage - 1) * venuesPerPage);
+        setVenues(fetchedVenues);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching venues:', error);
@@ -29,12 +23,12 @@ export function useFetchVenues() {
   }, [currentPage, venuesPerPage]);
 
   const nextPage = () => {
-    setCurrentPage(currentPage + 1);
+    setCurrentPage((prevPage) => prevPage + 1);
   };
 
   const prevPage = () => {
     if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+      setCurrentPage((prevPage) => prevPage - 1);
     }
   };
 
@@ -42,7 +36,6 @@ export function useFetchVenues() {
     venues,
     loading,
     currentPage,
-    setCurrentPage,
     nextPage,
     prevPage,
   };
