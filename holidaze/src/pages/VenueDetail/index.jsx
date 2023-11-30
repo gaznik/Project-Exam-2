@@ -1,16 +1,18 @@
+
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { makeApiRequest } from '../../utils/api/apiRequest'; 
+import { fetchVenueDetails } from './detailUtil'; // Adjust the path based on file location
 
 function VenueDetailsPage() {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [venueDetails, setVenueDetails] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchVenueDetails() {
+    async function fetchDetails() {
       try {
-        const response = await makeApiRequest(`venues/${id}`); 
+        const response = await fetchVenueDetails(id);
         setVenueDetails(response);
         setLoading(false);
       } catch (error) {
@@ -19,8 +21,10 @@ function VenueDetailsPage() {
       }
     }
 
-    fetchVenueDetails();
-  }, [id]); 
+    fetchDetails();
+  }, [id]);
+
+
 
   return (
     <div>
