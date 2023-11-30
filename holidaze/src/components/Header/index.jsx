@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import RegisterModal from '../RegisterModal';
+import RegisterModal from '../../components/RegisterModal'; 
 
 function Header() {
   const [showModal, setShowModal] = useState(false);
@@ -28,7 +28,7 @@ function Header() {
           </li>
         </ul>
       </nav>
-      {showModal && <RegisterModal onClose={closeModal} />}
+      {showModal && <RegisterModal onClose={closeModal} />} 
     </header>
   );
 }
