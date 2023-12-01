@@ -1,4 +1,4 @@
-import { retrieveAccessToken } from "./localStorage.js";
+import { retrieveAccessToken } from "../../../utils/localStorage.js";
 
 export function loggedInStatus() {
   const accessToken = retrieveAccessToken();
