@@ -1,5 +1,5 @@
-import { makeApiRequest } from '../../utils/api/apiRequest';
-import { VENUES_ENDPOINT } from '../../utils/api/constants';
+import { makeApiRequest } from '../api/apiRequest';
+import { VENUES_ENDPOINT } from '../../utils/constants';
 
 export async function fetchVenueDetails(id) {
   try {

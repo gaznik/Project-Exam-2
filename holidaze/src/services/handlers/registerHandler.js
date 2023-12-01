@@ -1,4 +1,4 @@
-import { REGISTER_URL } from '../../utils/api/constants';
+import { REGISTER_URL } from '../../utils/constants';
 
 async function registerHandler(user) {
     try {
