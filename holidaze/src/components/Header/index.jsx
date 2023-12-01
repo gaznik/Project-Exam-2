@@ -1,17 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import RegisterModal from '../../components/RegisterModal';
 import LoginModal from '../../components/LoginModal';
-import useModal from '../../hooks/useModal'; // Import the custom hook
-import { removeUserData } from '../../utils/localStorage'; // Import the function to remove token
+import useModal from '../../hooks/useModal';
+import { retrieveAccessToken, removeUserData } from '../../utils/localStorage'; 
 
 function Header() {
+  const navigate = useNavigate(); // Initialize useNavigate
   const { showModal: showRegisterModal, openModal: openRegisterModal, closeModal: closeRegisterModal } = useModal();
   const { showModal: showLoginModal, openModal: openLoginModal, closeModal: closeLoginModal } = useModal();
+  const isLoggedIn = !!retrieveAccessToken(); 
 
   const handleLogout = () => {
-    removeUserData(); // Function to remove the token from localStorage
-    // Additional logic for logout if needed (e.g., redirect to login page)
+    removeUserData(); 
+    navigate('/'); // Redirect to the homepage
   };
 
   return (
@@ -24,15 +26,21 @@ function Header() {
           <li>
             <Link to="/profile">Profile</Link>
           </li>
-          <li>
-            <button onClick={openRegisterModal}>Register</button>
-          </li>
-          <li>
-            <button onClick={openLoginModal}>Login</button>
-          </li>
-          <li>
-            <button onClick={handleLogout}>Logout</button>
-          </li>
+          {!isLoggedIn && (
+            <>
+              <li>
+                <button onClick={openRegisterModal}>Register</button>
+              </li>
+              <li>
+                <button onClick={openLoginModal}>Login</button>
+              </li>
+            </>
+          )}
+          {isLoggedIn && (
+            <li>
+              <button onClick={handleLogout}>Logout</button>
+            </li>
+          )}
         </ul>
       </nav>
       {showRegisterModal && <RegisterModal onClose={closeRegisterModal} />}
