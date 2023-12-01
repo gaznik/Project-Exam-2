@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchVenueDetails } from './detailUtil'; 
+import { fetchVenueDetails } from '../../services/handlers/venueDetailHandler'; 
 
 function VenueDetailsPage() {
   const { id } = useParams();
