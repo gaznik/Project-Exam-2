@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchVenuesList } from '../components/Venues/venuesUtil'; 
+import { fetchVenuesList } from '../services/handlers/venuesHandler'; 
 
 export function useFetchVenues() {
   const [venues, setVenues] = useState([]);

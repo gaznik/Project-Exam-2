@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import registerHandler from '../components/RegisterModal/registerHandler';
+import registerHandler from '../services/handlers/registerHandler';
 
 function useRegistration() {
   const [isRegistering, setIsRegistering] = useState(false);
