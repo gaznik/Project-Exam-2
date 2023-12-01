@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import handleLogin from '../components/LoginModal/loginHandler';
+import handleLogin from '../services/handlers/loginHandler';
 
 const useLoginForm = () => {
   const { handleSubmit, control } = useForm();
