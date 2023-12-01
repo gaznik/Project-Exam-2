@@ -1,6 +1,6 @@
 import { REGISTER_URL } from '../../utils/api/constants';
 
-async function registerUser(user) {
+async function registerHandler(user) {
     try {
         const response = await fetch(REGISTER_URL, {
             method: 'POST',
@@ -22,11 +22,10 @@ async function registerUser(user) {
             return { success: false, error: 'That did not quite work, try again.' };
         } 
     } catch (error) {
-        // Log the error details
         console.error(error);
 
         return { success: false, error: 'That did not quite work, try again.' };
     }
 }
 
-export default registerUser;
+export default registerHandler;
