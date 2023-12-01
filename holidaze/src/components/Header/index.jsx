@@ -1,26 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import RegisterModal from '../../components/RegisterModal';
-import LoginModal from '../../components/LoginModal'; 
+import LoginModal from '../../components/LoginModal';
+import useModal from '../../hooks/useModal'; // Import the custom hook
+import { removeUserData } from '../../utils/localStorage'; // Import the function to remove token
 
 function Header() {
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const { showModal: showRegisterModal, openModal: openRegisterModal, closeModal: closeRegisterModal } = useModal();
+  const { showModal: showLoginModal, openModal: openLoginModal, closeModal: closeLoginModal } = useModal();
 
-  const openRegisterModal = () => {
-    setShowRegisterModal(true);
-  };
-
-  const closeRegisterModal = () => {
-    setShowRegisterModal(false);
-  };
-
-  const openLoginModal = () => {
-    setShowLoginModal(true);
-  };
-
-  const closeLoginModal = () => {
-    setShowLoginModal(false);
+  const handleLogout = () => {
+    removeUserData(); // Function to remove the token from localStorage
+    // Additional logic for logout if needed (e.g., redirect to login page)
   };
 
   return (
@@ -37,12 +28,15 @@ function Header() {
             <button onClick={openRegisterModal}>Register</button>
           </li>
           <li>
-            <button onClick={openLoginModal}>Login</button> 
+            <button onClick={openLoginModal}>Login</button>
+          </li>
+          <li>
+            <button onClick={handleLogout}>Logout</button>
           </li>
         </ul>
       </nav>
       {showRegisterModal && <RegisterModal onClose={closeRegisterModal} />}
-      {showLoginModal && <LoginModal onClose={closeLoginModal} />} 
+      {showLoginModal && <LoginModal onClose={closeLoginModal} />}
     </header>
   );
 }
