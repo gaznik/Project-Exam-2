@@ -2,8 +2,12 @@ import { useForm, Controller } from 'react-hook-form';
 import useRegistration from '../../hooks/useRegistration';
 
 function RegisterUserForm() {
-  const { handleSubmit, control } = useForm();
-  const { isRegistering, registrationError, register } = useRegistration(); 
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
+  const { isRegistering, registrationError, register } = useRegistration();
 
   const onSubmit = async (data) => {
     const registrationResult = await register({
@@ -14,9 +18,8 @@ function RegisterUserForm() {
       venueManager: data.venueManager,
     });
 
-    
     if (registrationResult) {
-        console.log('Registration successful:', registrationResult);
+      console.log('Registration successful:', registrationResult);
     } else {
       console.log('Registration failed:', registrationError);
     }
@@ -32,14 +35,15 @@ function RegisterUserForm() {
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <input
-                {...field}
-                type="text"
-                placeholder="Name"
-                required
-              />
+              <div>
+                <input {...field} type="text" placeholder="Name" />
+                {errors.name && (
+                  <p className="error-message">{errors.name.message}</p>
+                )}
+              </div>
             )}
-          />
+            rules={{ required: 'Username is required', minLength: { value: 3, message: "Must be at least 3 characters long" } }}
+/>
         </div>
         <div>
           <label htmlFor="email">E-mail *</label>
@@ -48,14 +52,20 @@ function RegisterUserForm() {
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <input
-                {...field}
-                type="email"
-                placeholder="example@stud.noroff.no"
-                pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-                required
-              />
+              <div>
+                <input {...field} type="email" placeholder="example@stud.noroff.no" />
+                {errors.email && (
+                  <p className="error-message">{errors.email.message}</p>
+                )}
+              </div>
             )}
+            rules={{
+              required: 'Email is required',
+              pattern: {
+                value: /^[\w\-.]+@(stud\.)?noroff\.no$/,
+                message: 'Please enter a valid Noroff email address',
+              },
+            }}
           />
         </div>
         <div>
@@ -65,14 +75,20 @@ function RegisterUserForm() {
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <input
-                {...field}
-                type="password"
-                placeholder="********"
-                minLength="8"
-                required
-              />
+              <div>
+                <input {...field} type="password" placeholder="********" />
+                {errors.password && (
+                  <p className="error-message">{errors.password.message}</p>
+                )}
+              </div>
             )}
+            rules={{
+              required: 'Password is required',
+              minLength: {
+                value: 8,
+                message: 'Password must be at least 8 characters long',
+              },
+            }}
           />
         </div>
         <div>
@@ -82,7 +98,9 @@ function RegisterUserForm() {
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <input {...field} type="url" placeholder="https://example.jpg" />
+              <div>
+                <input {...field} type="url" placeholder="https://example.jpg" />
+              </div>
             )}
           />
         </div>
@@ -92,9 +110,7 @@ function RegisterUserForm() {
             name="venueManager"
             control={control}
             defaultValue={false}
-            render={({ field }) => (
-                <input type="checkbox" {...field} />
-            )}
+            render={({ field }) => <input type="checkbox" {...field} />}
           />
         </div>
         <p>You can always change this later.</p>
