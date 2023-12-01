@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import RegisterModal from '../../components/RegisterModal'; 
+import RegisterModal from '../../components/RegisterModal';
+import LoginModal from '../../components/LoginModal'; 
 
 function Header() {
-  const [showModal, setShowModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
-  const openModal = () => {
-    setShowModal(true);
+  const openRegisterModal = () => {
+    setShowRegisterModal(true);
   };
 
-  const closeModal = () => {
-    setShowModal(false);
+  const closeRegisterModal = () => {
+    setShowRegisterModal(false);
+  };
+
+  const openLoginModal = () => {
+    setShowLoginModal(true);
+  };
+
+  const closeLoginModal = () => {
+    setShowLoginModal(false);
   };
 
   return (
@@ -24,11 +34,15 @@ function Header() {
             <Link to="/profile">Profile</Link>
           </li>
           <li>
-            <button onClick={openModal}>Register</button>
+            <button onClick={openRegisterModal}>Register</button>
+          </li>
+          <li>
+            <button onClick={openLoginModal}>Login</button> 
           </li>
         </ul>
       </nav>
-      {showModal && <RegisterModal onClose={closeModal} />} 
+      {showRegisterModal && <RegisterModal onClose={closeRegisterModal} />}
+      {showLoginModal && <LoginModal onClose={closeLoginModal} />} 
     </header>
   );
 }
