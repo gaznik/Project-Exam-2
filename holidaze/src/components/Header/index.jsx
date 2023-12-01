@@ -2,18 +2,28 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import RegisterModal from '../../components/RegisterModal';
 import LoginModal from '../../components/LoginModal';
+import { retrieveAccessToken, removeUserData } from '../../utils/localStorage';
 import useModal from '../../hooks/useModal';
-import { retrieveAccessToken, removeUserData } from '../../utils/localStorage'; 
 
 function Header() {
-  const navigate = useNavigate(); // Initialize useNavigate
-  const { showModal: showRegisterModal, openModal: openRegisterModal, closeModal: closeRegisterModal } = useModal();
+  const navigate = useNavigate();
   const { showModal: showLoginModal, openModal: openLoginModal, closeModal: closeLoginModal } = useModal();
-  const isLoggedIn = !!retrieveAccessToken(); 
+  const { showModal: showRegisterModal, openModal: openRegisterModal, closeModal: closeRegisterModal } = useModal();
+  const isLoggedIn = !!retrieveAccessToken();
 
   const handleLogout = () => {
-    removeUserData(); 
+    removeUserData();
     navigate('/'); // Redirect to the homepage
+  };
+
+  const openLogin = () => {
+    closeRegisterModal();
+    openLoginModal();
+  };
+
+  const openRegister = () => {
+    closeLoginModal();
+    openRegisterModal();
   };
 
   return (
@@ -27,14 +37,10 @@ function Header() {
             <Link to="/profile">Profile</Link>
           </li>
           {!isLoggedIn && (
-            <>
-              <li>
-                <button onClick={openRegisterModal}>Register</button>
-              </li>
-              <li>
-                <button onClick={openLoginModal}>Login</button>
-              </li>
-            </>
+            <li>
+              <button onClick={openLogin}>Login</button>
+              <button onClick={openRegister}>Register</button>
+            </li>
           )}
           {isLoggedIn && (
             <li>
@@ -43,8 +49,12 @@ function Header() {
           )}
         </ul>
       </nav>
-      {showRegisterModal && <RegisterModal onClose={closeRegisterModal} />}
-      {showLoginModal && <LoginModal onClose={closeLoginModal} />}
+      {showLoginModal && (
+        <LoginModal onClose={closeLoginModal} onToggle={openRegisterModal} />
+      )}
+      {showRegisterModal && (
+        <RegisterModal onClose={closeRegisterModal} onToggle={openLoginModal} />
+      )}
     </header>
   );
 }

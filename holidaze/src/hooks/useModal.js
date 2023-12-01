@@ -11,7 +11,11 @@ function useModal() {
     setShowModal(false);
   };
 
-  return { showModal, openModal, closeModal };
+  return {
+    showModal,
+    openModal,
+    closeModal,
+  };
 }
 
 export default useModal;

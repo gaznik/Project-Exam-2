@@ -1,15 +1,19 @@
 import React from 'react';
-import LoginForm from './LoginForm'; 
+import LoginForm from './LoginForm';
 
-function LoginModal({ onClose }) {
+function LoginModal({ onClose, onToggle }) {
+  const switchToRegister = () => {
+    onClose(); 
+    onToggle(); 
+  };
+
   return (
     <div>
       <div>
-        <button onClick={onClose}>Close</button>
-      </div>
-      <div>
         <h1>Login</h1>
-        <LoginForm /> 
+        <LoginForm />
+        <button onClick={switchToRegister}>Register here</button>
+        <button onClick={onClose}>Close</button>
       </div>
     </div>
   );
