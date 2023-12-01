@@ -1,16 +1,13 @@
 import React from 'react';
-import { useForm, Controller } from 'react-hook-form'; 
-import handleLogin from './loginHandler'; 
+import { Controller } from 'react-hook-form';
+import useLoginForm from '../../hooks/useLogin';
 
 const LoginForm = () => {
-  const { handleSubmit, control } = useForm(); 
-  const formOnSubmit = async (data) => {
-    await handleLogin(data); 
-  };
+  const { handleSubmit, control, onSubmit } = useLoginForm();
 
   return (
     <div>
-      <form onSubmit={handleSubmit(formOnSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">E-mail</label>
         <Controller
           name="email"
