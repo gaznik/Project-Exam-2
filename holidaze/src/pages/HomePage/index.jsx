@@ -3,7 +3,7 @@ import Venues from '../../components/Venues';
 import DisplaySearchResults from '../../components/SearchResults';
 import Search from '../../components/Search';
 
-function Home() {
+function HomePage() {
   return (
     <div>
       <h2>Welcome to Holidaze</h2>
@@ -14,4 +14,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
-import DisplayProfile from '../../components/Profile';
+import DisplayProfile from '../../components/DisplayProfile';
 
-function Profile() {
+function ProfilePage() {
   return (
     <HelmetProvider>
       <div>
@@ -21,4 +21,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default ProfilePage;
