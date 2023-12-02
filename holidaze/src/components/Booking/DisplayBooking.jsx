@@ -2,26 +2,20 @@ import { useState } from 'react';
 import BookingForm from './BookingForm.jsx';
 import useBookingData from '../../hooks/useBookingData.js';
 import BookingCalendar from './BookingCalendar.jsx';
+import handleDateSelect from '../../services/handlers/dateSelectHandler.js';
 
 function DisplayBooking() {
   const { events, loading, throwError } = useBookingData();
   const [selectedDates, setSelectedDates] = useState([]);
 
-  const handleDateSelect = (date) => {
-    if (selectedDates.length === 0) {
-      setSelectedDates([date]);
-    } else if (selectedDates.length === 1 && date > selectedDates[0]) {
-      setSelectedDates([selectedDates[0], date]);
-    } else {
-      setSelectedDates([date]);
-    }
+  const onDateSelect = (date) => {
+    handleDateSelect(date, selectedDates, setSelectedDates);
   };
-  
 
   if (loading) {
     return (
       <div>
-        <p >Loading bookings ...</p>
+        <p>Loading bookings...</p>
       </div>
     );
   }
@@ -36,7 +30,7 @@ function DisplayBooking() {
         <div id="calendar">
           <h3>Available dates:</h3>
           <div>
-          {BookingCalendar({ events, handleDateSelect, selectedDates })}
+            {BookingCalendar({ events, handleDateSelect: onDateSelect, selectedDates })}
           </div>
           <BookingForm selectedDates={selectedDates} setSelectedDates={setSelectedDates} />
         </div>
