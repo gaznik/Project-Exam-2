@@ -1,7 +1,8 @@
 import { PROFILE_DATA_URL } from '../../utils/constants';
 import { useState } from 'react';
 import GetData from '../../services/api/useDataRetrieval'
-import updateAvatarHandler from '../../services/handlers/updateAvatarHandler';
+import updateAvatar from '../../services/handlers/updateAvatarHandler';
+import MyBookings from './MyBookings';
 
 function DisplayProfile() {
     const avatarPlaceholder = '/icons/user.png';
@@ -25,7 +26,7 @@ function DisplayProfile() {
         const avatar = formData.avatar;
         e.preventDefault();
         try {
-            await updateAvatarHandler({ avatar });
+            await updateAvatar({ avatar });
             // Handle any post-update actions or state changes
         } catch (error) {
             console.error('Error updating avatar:', error);
@@ -91,9 +92,9 @@ function DisplayProfile() {
                         </form>
                     </div>
                     <div>
-                        <h2>Your bookings</h2>
+                        <h2>My bookings</h2>
                         <div>
-                            code for displaying booking                    
+                            <MyBookings />                    
                         </div>
                     </div>
                     <div>
