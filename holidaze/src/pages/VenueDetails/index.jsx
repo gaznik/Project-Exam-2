@@ -1,17 +1,20 @@
-import DisplayVenueDetails from  "../../components/DisplayVenueDetails";
-import { Helmet } from 'react-helmet';
+import React from 'react';
+import DisplayVenueDetails from "../../components/DisplayVenueDetails";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 function VenueDetails() {
-    return (
+  return (
+    <HelmetProvider>
       <div>
         <div className='application'>
           <Helmet>
-              <link rel="icon" href="icons/loading.png" />
+            <link rel="icon" href="icons/loading.png" />
           </Helmet>
         </div>
         <DisplayVenueDetails />
       </div>
-    );
-  }
-  
-  export default VenueDetails;
+    </HelmetProvider>
+  );
+}
+
+export default VenueDetails;
