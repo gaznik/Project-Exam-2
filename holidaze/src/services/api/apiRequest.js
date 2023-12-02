@@ -1,26 +1,35 @@
-import { API_BASE_URL } from "../../utils/constants";
+import { accessToken } from '../../utils/localStorage.js';
 
-export async function makeApiRequest(endpoint, method = 'GET', data = null) {
-  const url = `${API_BASE_URL}${endpoint}`;
+async function apiRequest(url = '', method = 'GET', data = {}, customHeaders = {}) {
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${accessToken}`,
+    ...customHeaders,
+  };
 
   const requestOptions = {
     method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: data ? JSON.stringify(data) : null,
+    headers,
   };
+
+  if (method !== 'GET') {
+    requestOptions.body = JSON.stringify(data);
+  }
 
   try {
     const response = await fetch(url, requestOptions);
 
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      console.error('Request failed:', response);
+      throw new Error('Request failed');
     }
 
-    return await response.json();
+    const responseData = await response.json();
+    return responseData;
   } catch (error) {
-    console.error('API request error:', error);
+    console.error('Error:', error);
     throw error;
   }
 }
+
+export default apiRequest;
