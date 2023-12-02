@@ -31,13 +31,13 @@ function Header() {
       <nav>
         <ul>
           <li>
-            <NavLink to="/" activeClassName="active">
+            <NavLink to="/">
               Home
             </NavLink>
           </li>
           {isLoggedIn() && ( 
             <li>
-              <NavLink to="/profile" activeClassName="active">
+              <NavLink to="/profile">
                 Profile
               </NavLink>
             </li>
