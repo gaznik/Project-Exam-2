@@ -1,25 +1,15 @@
 import { VENUES_URL } from '../../utils/constants.js';
-import { accessToken } from '../../utils/localStorage.js';
+import apiRequest from '../../services/api/apiRequest.js'; 
 
 export async function fetchVenueBookings(id) {
-    const venueBookingsUrl = `${VENUES_URL}/${id}?_bookings=true&_owner=true`;
+  const venueBookingsUrl = `${VENUES_URL}/${id}?_bookings=true&_owner=true`;
 
-    try {
-        const bookingData = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`
-            },
-            body: JSON.stringify()
-        };
+  try {
+    const result = await apiRequest(venueBookingsUrl, 'GET');
+    console.log('Booking Data:', result); //
 
-        const response = await fetch(venueBookingsUrl, bookingData);
-        const result = await response.json();
-        console.log('Booking Data:', result); //
-
-        return result;
-    } catch (error) {
-        throw new Error('Failed to fetch venue bookings');
-    }
+    return result;
+  } catch (error) {
+    throw new Error('Failed to fetch venue bookings');
+  }
 }
