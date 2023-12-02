@@ -1,6 +1,6 @@
 import { REGISTER_URL } from '../../utils/constants';
 
-async function registerHandler(user) {
+async function registerUser(user) {
     try {
         const response = await fetch(REGISTER_URL, {
             method: 'POST',
@@ -28,4 +28,4 @@ async function registerHandler(user) {
     }
 }
 
-export default registerHandler;
+export default registerUser;

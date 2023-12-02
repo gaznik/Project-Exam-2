@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import handleLogin from '../services/handlers/loginHandler';
+import loginUser from '../services/handlers/loginHandler';
 
 const useLoginForm = () => {
   const { handleSubmit, control } = useForm();
@@ -9,7 +9,7 @@ const useLoginForm = () => {
   const onSubmit = async (data) => {
     try {
       setIsLoggingIn(true);
-      await handleLogin(data);
+      await loginUser(data);
       setIsLoggingIn(false);
     } catch (error) {
       setIsLoggingIn(false);

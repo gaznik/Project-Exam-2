@@ -2,7 +2,7 @@ import { LOGIN_URL } from '../../utils/constants';
 import redirectToProfile from '../../components/LoginModal/redirect';
 import storeUserData from '../../components/LoginModal/storeUserData';
 
-async function handleLogin(data) {
+async function loginUser(data) {
 try {
     const response = await fetch(LOGIN_URL, {
     method: 'POST',
@@ -25,4 +25,4 @@ try {
 }
 }
 
-export default handleLogin;
+export default loginUser;

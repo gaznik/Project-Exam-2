@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import registerHandler from '../services/handlers/registerHandler';
+import registerUser from '../services/handlers/registerHandler';
 
 function useRegistration() {
   const [isRegistering, setIsRegistering] = useState(false);
@@ -8,7 +8,7 @@ function useRegistration() {
   const register = async (userData) => {
     try {
       setIsRegistering(true);
-      const registrationResult = await registerHandler(userData);
+      const registrationResult = await registerUser(userData);
       setIsRegistering(false);
       return registrationResult;
     } catch (error) {
