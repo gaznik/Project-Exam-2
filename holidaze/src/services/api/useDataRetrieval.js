@@ -1,5 +1,5 @@
-import { accessToken } from '../../utils/localStorage';
-import { useState, useEffect } from 'react';
+import apiRequest from './apiRequest';
+import { useEffect, useState } from 'react';
 
 function useDataRetrieval(url) {
     const [data, setData] = useState([]);
@@ -12,17 +12,7 @@ function useDataRetrieval(url) {
                 setLoading(true);
                 setThrowError(false);
 
-                const response = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${accessToken}`
-                    },
-                    body: JSON.stringify()
-                });
-
-                const result = await response.json();
-
+                const result = await apiRequest(url, 'GET');
                 setData(result);
                 setLoading(false);
             } catch (error) {
