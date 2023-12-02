@@ -22,6 +22,7 @@ function useRegistration() {
     isRegistering,
     registrationError,
     register,
+    setIsRegistering, // Add this setter function to manage isRegistering state
   };
 }
 

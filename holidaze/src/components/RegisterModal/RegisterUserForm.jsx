@@ -1,32 +1,45 @@
 import { useForm, Controller } from 'react-hook-form';
 import useRegistration from '../../hooks/useRegistration';
 
+
 function RegisterUserForm() {
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm();
-  const { isRegistering, registrationError, register } = useRegistration();
+  const { isRegistering, registrationError, register, setIsRegistering } = useRegistration();
 
   const onSubmit = async (data) => {
-    const registrationResult = await register({
-      name: data.name,
-      email: data.email,
-      password: data.password,
-      avatar: data.avatar,
-      venueManager: data.venueManager,
-    });
+    setIsRegistering(true); 
+    try {
+      const registrationResult = await register({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        avatar: data.avatar,
+        venueManager: data.venueManager,
+      });
 
-    if (registrationResult) {
-      console.log('Registration successful:', registrationResult);
-    } else {
-      console.log('Registration failed:', registrationError);
+      if (registrationResult) {
+        console.log('Registration successful:', registrationResult);
+      } else {
+        console.log('Registration failed:', registrationError);
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+    } finally {
+      setIsRegistering(false); 
     }
   };
 
   return (
     <div>
+      {isRegistering && (
+        <div className="d-flex justify-content-center align-items-center vh-100">
+          <p>Registering...</p>
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="name">Username *</label>

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
+import { Spinner } from 'react-bootstrap'; // Import Bootstrap Spinner
 import useLoginForm from '../../hooks/useLogin';
 
 const LoginForm = () => {
-  const { handleSubmit, control, onSubmit } = useLoginForm();
+  const { handleSubmit, control, onSubmit, isLoggingIn } = useLoginForm();
 
   return (
     <div>
@@ -38,7 +39,13 @@ const LoginForm = () => {
         />
         <div>
           <button type="submit">
-            Login
+            {isLoggingIn ? (
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            ) : (
+              'Login'
+            )}
           </button>
         </div>
       </form>
