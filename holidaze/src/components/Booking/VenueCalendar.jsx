@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Calendar from 'react-calendar';
 import BookingForm from './BookingForm.jsx';
-import FetchBookings from './SpecificBooking.jsx';
+import useBookingData from '../../hooks/useBookingData.js';
 
-function VenueCalendar() {
-  const { events, loading, throwError } = FetchBookings();
+function DisplayBookingsOfVenue() {
+  const { events, loading, throwError } = useBookingData();
   const [selectedDates, setSelectedDates] = useState([]);
 
   const handleDateSelect = (date) => {
@@ -58,4 +58,4 @@ function VenueCalendar() {
   );
 }
 
-export default VenueCalendar;
+export default DisplayBookingsOfVenue;
