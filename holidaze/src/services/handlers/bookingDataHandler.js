@@ -6,7 +6,6 @@ export async function fetchVenueBookings(id) {
 
   try {
     const result = await apiRequest(venueBookingsUrl, 'GET');
-    console.log('Booking Data:', result); //
 
     return result;
   } catch (error) {
