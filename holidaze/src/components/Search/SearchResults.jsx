@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function DisplaySearchResults({ venues }) {
+function SearchResults({ venues }) {
   const hasInput = venues !== null; 
   const noMatchingVenues = venues && venues.length === 0; 
 
@@ -32,4 +32,4 @@ function DisplaySearchResults({ venues }) {
   );
 }
 
-export default DisplaySearchResults;
+export default SearchResults;

@@ -1,8 +1,8 @@
 import React from 'react';
-import DisplaySearchResults from '../SearchResults';
+import SearchResults from './SearchResults';
 import useSearch from '../../hooks/useSearch';
 
-function Search() {
+function SearchForm() {
   const { searchQuery, searchResult, handleInputChange } = useSearch();
 
   return (
@@ -18,9 +18,9 @@ function Search() {
           value={searchQuery}
         />
       </form>
-      {searchQuery ? <DisplaySearchResults venues={searchResult} /> : null}
+      {searchQuery ? <SearchResults venues={searchResult} /> : null}
     </div>
   );
 }
 
-export default Search;
+export default SearchForm;
