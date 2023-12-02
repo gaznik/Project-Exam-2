@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Calendar from 'react-calendar';
 import BookingForm from './BookingForm.jsx';
 import useBookingData from '../../hooks/useBookingData.js';
+import BookingCalendar from './BookingCalendar.jsx';
 
-function DisplayBookingsOfVenue() {
+function DisplayBooking() {
   const { events, loading, throwError } = useBookingData();
   const [selectedDates, setSelectedDates] = useState([]);
 
@@ -36,20 +36,7 @@ function DisplayBookingsOfVenue() {
         <div id="calendar">
           <h3>Available dates:</h3>
           <div>
-            <Calendar
-              events={events}
-              tileContent={({ date }) => {
-                const bookedDates = events.filter(
-                  (event) => date >= event.start && date <= event.end
-                );
-                return bookedDates.length > 0 ? (
-                  <div style={{ backgroundColor: 'red' }}>X</div>
-                ) : null;
-              }}
-              onClickDay={handleDateSelect}
-              selectRange={true}
-              value={selectedDates}
-            />
+          {BookingCalendar({ events, handleDateSelect, selectedDates })}
           </div>
           <BookingForm selectedDates={selectedDates} setSelectedDates={setSelectedDates} />
         </div>
@@ -58,4 +45,4 @@ function DisplayBookingsOfVenue() {
   );
 }
 
-export default DisplayBookingsOfVenue;
+export default DisplayBooking;
