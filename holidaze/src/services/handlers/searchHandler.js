@@ -1,6 +1,6 @@
 import { API_BASE_URL, VENUES_ENDPOINT } from '../../utils/constants';
 
-export async function fetchAllVenues(offset = 0, venuesSoFar = []) {
+async function fetchAllVenues(offset = 0, venuesSoFar = []) {
   try {
     const venueUrl = `${API_BASE_URL}${VENUES_ENDPOINT}`;
     const response = await fetch(`${venueUrl}?offset=${offset}&limit=100`);
@@ -17,3 +17,5 @@ export async function fetchAllVenues(offset = 0, venuesSoFar = []) {
     return venuesSoFar;
   }
 }
+
+export default fetchAllVenues;

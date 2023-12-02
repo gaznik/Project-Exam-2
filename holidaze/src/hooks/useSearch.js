@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchAllVenues } from '../services/handlers/searchHandler';
+import fetchAllVenues from '../services/handlers/searchHandler';
 
 function useSearch() {
   const [searchQuery, setSearchQuery] = useState('');
