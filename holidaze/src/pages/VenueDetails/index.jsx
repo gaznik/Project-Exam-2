@@ -1,7 +1,7 @@
 import React from 'react';
 import DisplayVenueDetails from "../../components/DisplayVenueDetails";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import VenueCalendar from '../../components/Booking/VenueCalendar';
+import DisplayBooking from '../../components/Booking/DisplayBooking';
 
 function VenueDetails() {
   return (
@@ -13,7 +13,7 @@ function VenueDetails() {
           </Helmet>
         </div>
         <DisplayVenueDetails />
-        <VenueCalendar />
+        <DisplayBooking />
       </div>
     </HelmetProvider>
   );
