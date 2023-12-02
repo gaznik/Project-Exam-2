@@ -3,6 +3,7 @@ import { useState } from 'react';
 import GetData from '../../services/api/useDataRetrieval'
 import updateAvatar from '../../services/handlers/updateAvatarHandler';
 import MyBookings from './MyBookings';
+import BecomeVenueManager from '../../components/VenueManager/BecomeVenueManager';
 
 function DisplayProfile() {
     const avatarPlaceholder = '/icons/user.png';
@@ -99,7 +100,7 @@ function DisplayProfile() {
                     </div>
                     <div>
                         <p>Rent out your venue? </p>
-                        <button >Become a venue manager.</button>
+                        <button onClick={BecomeVenueManager} className='my-2 text-lg font-bold text-[#FFEC58] rounded hover:underline hover:text-white'>Become a venue manager.</button>
                     </div>
                 </div>
             )
