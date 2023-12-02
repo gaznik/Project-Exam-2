@@ -1,26 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchVenueDetails } from '../../services/handlers/venueDetailHandler'; 
+import React from 'react';
+import useVenueDetails from '../../hooks/useVenueDetails';
 
 function DisplayVenueDetails() {
-  const { id } = useParams();
-  const [venueDetails, setVenueDetails] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchDetails() {
-      try {
-        const response = await fetchVenueDetails(id);
-        setVenueDetails(response);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching venue details:', error);
-        setLoading(false);
-      }
-    }
-
-    fetchDetails();
-  }, [id]);
+  const { venueDetails, loading } = useVenueDetails();
 
   return (
     <div>
@@ -36,21 +18,11 @@ function DisplayVenueDetails() {
               <p>Price: {venueDetails.price}</p>
               {venueDetails.meta && (
                 <div>
-                  <div className="flex justify-between text-sm">
-                    <p className="mr-2">Wifi:</p>
-                    <p>{venueDetails.meta.wifi ? 'yes' : 'no'}</p>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <p className="mr-2">Breakfast:</p>
-                    <p>{venueDetails.meta.breakfast ? 'yes' : 'no'}</p>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <p className="mr-2">Parking:</p>
-                    <p>{venueDetails.meta.parking ? 'yes' : 'no'}</p>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <p className="mr-2">Pets:</p>
-                    <p>{venueDetails.meta.pets ? 'yes' : 'no'}</p>
+                  <div>
+                    <p>Wifi: {venueDetails.meta.wifi ? 'yes' : 'no'}</p>
+                    <p>Breakfast: {venueDetails.meta.breakfast ? 'yes' : 'no'}</p>
+                    <p>Parking: {venueDetails.meta.parking ? 'yes' : 'no'}</p>
+                    <p>Pets: {venueDetails.meta.pets ? 'yes' : 'no'}</p>
                   </div>
                 </div>
               )}
