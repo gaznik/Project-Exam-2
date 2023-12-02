@@ -1,6 +1,6 @@
 import React from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
-import DisplayProfile from '../../components/DisplayProfile';
+import DisplayProfile from '../../components/Profile/DisplayProfile';
 
 function ProfilePage() {
   return (

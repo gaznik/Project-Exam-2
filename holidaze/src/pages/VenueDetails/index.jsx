@@ -1,6 +1,7 @@
 import React from 'react';
 import DisplayVenueDetails from "../../components/DisplayVenueDetails";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import VenueCalendar from '../../components/Booking/VenueCalendar';
 
 function VenueDetails() {
   return (
@@ -12,6 +13,7 @@ function VenueDetails() {
           </Helmet>
         </div>
         <DisplayVenueDetails />
+        <VenueCalendar />
       </div>
     </HelmetProvider>
   );
