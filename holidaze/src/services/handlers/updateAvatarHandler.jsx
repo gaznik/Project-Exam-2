@@ -1,29 +1,21 @@
 import { PROFILE_MEDIA_URL } from '../../utils/constants';
-import { accessToken } from '../../utils/localStorage';
+import apiRequest from '../api/apiRequest';
 
-async function updateAvatarHandler(avatar) {
-    try {
-        const response = await fetch(PROFILE_MEDIA_URL, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`
-            },
-            body: JSON.stringify(avatar)
-        });
+async function updateAvatar(avatar) {
+  try {
+    const response = await apiRequest(PROFILE_MEDIA_URL, 'PUT', avatar);
 
-        const result = await response.json();
-
-        if (response.ok) {
-            console.log('Success! Your avatar is updated.');
-        } else {
-            console.error('Something went wrong, try again.');
-        }
-
-        return result;
-    } catch (error) {
-        console.error(error);
+    if (response.ok) {
+      console.log('Success! Your avatar is updated.');
+      return response;
+    } else {
+      console.error('Something went wrong, try again.');
+      throw new Error('Request failed');
     }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
-export default updateAvatarHandler;
+export default updateAvatar;
