@@ -13,7 +13,6 @@ const useLoginForm = () => {
       setIsLoggingIn(false);
     } catch (error) {
       setIsLoggingIn(false);
-      // Handle login error
       console.error('Login failed:', error);
     }
   };
