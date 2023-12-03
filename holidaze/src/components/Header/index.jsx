@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import RegisterModal from '../../components/RegisterModal';
 import LoginModal from '../../components/LoginModal';
 import { removeUserData } from '../../utils/localStorage';
 import useModal from '../../hooks/useModal';
 import { isLoggedIn } from '../../utils/userStatus';
+import '../../styles/Header.css';
 
 function Header() {
   const navigate = useNavigate();
   const { showModal: showLoginModal, openModal: openLoginModal, closeModal: closeLoginModal } = useModal();
   const { showModal: showRegisterModal, openModal: openRegisterModal, closeModal: closeRegisterModal } = useModal();
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
   const handleLogout = () => {
     removeUserData();
     navigate('/');
+  };
+
+  const toggleNavbar = () => {
+    setNavbarOpen(!navbarOpen);
+  };
+
+  const closeNavbar = () => {
+    setNavbarOpen(false);
   };
 
   const openLogin = () => {
@@ -30,17 +40,17 @@ function Header() {
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <NavLink className="navbar-brand" to="/">
+          <NavLink className="navbar-brand" to="/" onClick={closeNavbar}>
             Home
           </NavLink>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button className="navbar-toggler" type="button" onClick={toggleNavbar}>
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
+          <div className={`collapse navbar-collapse ${navbarOpen ? 'show' : ''}`}>
+            <ul className="navbar-nav ms-auto" onClick={closeNavbar}>
               {isLoggedIn() && (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/profile">
+                  <NavLink className="nav-lin profile-link" to="/profile">
                     Profile
                   </NavLink>
                 </li>
@@ -57,7 +67,7 @@ function Header() {
               )}
               {isLoggedIn() && (
                 <li className="nav-item">
-                  <button className="btn btn-danger" onClick={handleLogout}>
+                  <button className="cancel-button" onClick={handleLogout}>
                     Logout
                   </button>
                 </li>
