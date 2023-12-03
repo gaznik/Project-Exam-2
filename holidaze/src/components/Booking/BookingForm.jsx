@@ -41,7 +41,7 @@ function BookingForm({ selectedDates, setSelectedDates }) {
     };
 
     try {
-      const response = await createBooking(body);
+      await createBooking(body);
     } catch (error) {
       console.error('Error creating booking:', error);
     }
