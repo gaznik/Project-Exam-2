@@ -4,7 +4,7 @@ import RegisterModal from '../../components/RegisterModal';
 import LoginModal from '../../components/LoginModal';
 import { removeUserData } from '../../utils/localStorage'; 
 import useModal from '../../hooks/useModal';
-import { isLoggedIn } from '../../services/api/auth/isLoggedIn'; 
+import { isLoggedIn } from '../../utils/userStatus'; 
 
 function Header() {
   const navigate = useNavigate();
