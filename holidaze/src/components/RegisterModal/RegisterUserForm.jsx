@@ -11,7 +11,7 @@ function RegisterUserForm() {
     formState: { errors },
   } = useForm();
 
-  const { isRegistering, registrationError, register, setIsRegistering } = useRegistration();
+  const {registrationError, register } = useRegistration();
 
   const onSubmit = async (data) => {
     setIsRegistering(true);
