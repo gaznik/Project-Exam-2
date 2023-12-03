@@ -1,21 +1,21 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { Spinner } from 'react-bootstrap'; // Import Bootstrap Spinner
+import { Spinner, Form, Button, FormGroup, FormControl } from 'react-bootstrap';
 import useLoginForm from '../../hooks/useLogin';
 
 const LoginForm = () => {
   const { handleSubmit, control, onSubmit, isLoggingIn } = useLoginForm();
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">E-mail</label>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormGroup className="mb-3">
+        <Form.Label>Email</Form.Label>
         <Controller
           name="email"
           control={control}
           defaultValue=""
           render={({ field }) => (
-            <input
+            <FormControl
               {...field}
               type="email"
               placeholder="example@stud.noroff.no"
@@ -23,13 +23,16 @@ const LoginForm = () => {
             />
           )}
         />
-        <label htmlFor="password">Password</label>
+      </FormGroup>
+
+      <FormGroup className="mb-3">
+        <Form.Label>Password</Form.Label>
         <Controller
           name="password"
           control={control}
           defaultValue=""
           render={({ field }) => (
-            <input
+            <FormControl
               {...field}
               type="password"
               placeholder="********"
@@ -37,19 +40,27 @@ const LoginForm = () => {
             />
           )}
         />
-        <div>
-          <button className="native-button" type="submit">
-            {isLoggingIn ? (
-              <Spinner animation="border" role="status">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            ) : (
-              'Login'
-            )}
-          </button>
-        </div>
-      </form>
-    </div>
+      </FormGroup>
+
+      <div className="d-grid gap-2">
+        <Button className="native-button" variant="primary" type="submit" disabled={isLoggingIn}>
+          {isLoggingIn ? (
+            <>
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+              <span className="visually-hidden">Loading...</span>
+            </>
+          ) : (
+            'Login'
+          )}
+        </Button>
+      </div>
+    </Form>
   );
 };
 
