@@ -1,0 +1,12 @@
+@import '../../holidaze/src/styles/buttons.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif !important; 
+  -webkit-font-smoothing: antialiased;
+  
+}
+a {
+  text-decoration: none;
+}
