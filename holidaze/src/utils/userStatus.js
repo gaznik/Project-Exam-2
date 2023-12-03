@@ -1,4 +1,4 @@
-import { accessToken } from "../../../utils/localStorage";
+import { accessToken } from "./localStorage";
 
 export function isLoggedIn() {
   const accessToken = localStorage.getItem('accessToken'); 
@@ -7,3 +7,5 @@ export function isLoggedIn() {
 export function retrieveAccessToken() {
   return accessToken;
 }
+
+

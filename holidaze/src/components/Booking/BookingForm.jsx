@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import createBooking from '../../services/handlers/bookingHandler';
-import { isLoggedIn } from '../../services/api/auth/isLoggedIn'
+import { isLoggedIn } from '../../utils/userStatus';
 
 function adjustDateForTimezone(date) {
   const tzOffset = date.getTimezoneOffset();
