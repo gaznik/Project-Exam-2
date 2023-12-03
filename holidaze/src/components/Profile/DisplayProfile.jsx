@@ -1,9 +1,11 @@
 import { PROFILE_DATA_URL } from '../../utils/constants';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import GetData from '../../services/api/useDataRetrieval'
 import updateAvatar from '../../services/handlers/updateAvatarHandler';
 import MyBookings from './MyBookings';
 import BecomeVenueManager from '../../components/VenueManager/BecomeVenueManager';
+import DisplayMyVenues from '../../components/VenueManager/DisplayMyVenues';
 
 function DisplayProfile() {
     const avatarPlaceholder = '/icons/user.png';
@@ -28,10 +30,8 @@ function DisplayProfile() {
         e.preventDefault();
         try {
             await updateAvatar({ avatar });
-            // Handle any post-update actions or state changes
         } catch (error) {
             console.error('Error updating avatar:', error);
-            // Handle error state or show error message
         }
     };
 
@@ -60,13 +60,14 @@ function DisplayProfile() {
                     <div>
                         <h2>My bookings</h2>
                         <div>
-                            
+                            <MyBookings />
                         </div>
                     </div>
                     <div>
                         <h2>My venues</h2>
+                        <Link to="/createVenue">Create new venue listing</Link>
                         <div>
-                            
+                            <DisplayMyVenues />
                         </div>
                     </div>
                 </div>
@@ -100,7 +101,7 @@ function DisplayProfile() {
                     </div>
                     <div>
                         <p>Rent out your venue? </p>
-                        <button onClick={BecomeVenueManager} className='my-2 text-lg font-bold text-[#FFEC58] rounded hover:underline hover:text-white'>Become a venue manager.</button>
+                        <button onClick={BecomeVenueManager} >Become a venue manager.</button>
                     </div>
                 </div>
             )
