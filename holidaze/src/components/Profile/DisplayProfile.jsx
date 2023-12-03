@@ -7,6 +7,7 @@ import MyBookings from './MyBookings';
 import BecomeVenueManager from '../../components/VenueManager/BecomeVenueManager';
 import DisplayMyVenues from '../../components/VenueManager/DisplayMyVenues';
 import '../../styles/DisplayProfile.css';
+import '../../styles/buttons.css';
 
 function DisplayProfile() {
     const avatarPlaceholder = '/icons/user.png';
@@ -50,7 +51,7 @@ function DisplayProfile() {
                             value={avatar}
                             onChange={handleChange}
                         />
-                        <button onClick={handleClick}>Update avatar</button>
+                        <button className="native-button" onClick={handleClick}>Update avatar</button>
                     </div>
                 </form>
             </div>
@@ -63,9 +64,9 @@ function DisplayProfile() {
             {venueManager ? (
                 <div>
                     <h2>My venues</h2>
-                    <Link to="/createVenue">Create new venue listing</Link>
                     <div>
                         <DisplayMyVenues />
+                        <Link to="/createVenue">Create new venue listing</Link>
                     </div>
                 </div>
             ) : (
