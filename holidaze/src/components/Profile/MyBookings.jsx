@@ -68,7 +68,7 @@ function MyBookings() {
                     </div>
                   </div>
                 </Link>
-                <button
+                <button className="cancel-button"
                   onClick={async () => {
                     try {
                       await handleDelete(id);
