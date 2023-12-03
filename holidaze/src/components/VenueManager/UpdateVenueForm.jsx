@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import updateVenue from '../../services/handlers/updateVenueHandler';
 import { VENUES_URL } from '../../utils/constants';
+import '../../styles/buttons.css';
 
 function UpdateVenueForm() {
   const { handleSubmit, control, setValue } = useForm();
@@ -225,7 +226,7 @@ function UpdateVenueForm() {
 
 
                 <div className='flex justify-between mt-8 md:pb-10'>
-                    <button type='submit'>Update Venue</button>
+                    <button className="native-button" type='submit'>Update Venue</button>
                 </div>
 
 

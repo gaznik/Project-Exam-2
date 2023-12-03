@@ -5,11 +5,12 @@ import DeleteVenue from '../VenueManager/DeleteVenue';
 import { useParams } from 'react-router-dom';
 import useVenueOwner from '../../hooks/useVenueOwner';
 import { loggedInUsername } from '../../utils/userStatus';
+import '../../styles/buttons.css';
 
 function DisplayVenueDetails() {
   const { id } = useParams();
   const { venueDetails, loading: venueLoading } = useVenueDetails();
-  const { owner, loading: ownerLoading } = useVenueOwner(id); 
+  const { owner, loading: ownerLoading } = useVenueOwner(id);
   const loading = venueLoading || ownerLoading;
 
   const username = loggedInUsername();
@@ -20,12 +21,14 @@ function DisplayVenueDetails() {
   }
 
   return (
-    <div>
+    <div className="container mt-4">
       {isOwner && (
-        <React.Fragment>
+        <div className="mb-3">
           <DeleteVenue />
-          <Link to={`/updateVenue/${id}`}>Update venue info</Link>
-        </React.Fragment>
+          <Link to={`/updateVenue/${id}`} className="native-button">
+            Update venue info
+          </Link>
+        </div>
       )}
 
       {venueDetails ? (
@@ -44,7 +47,7 @@ function DisplayVenueDetails() {
           {venueDetails.media && venueDetails.media.length > 0 && (
             <div>
               <p>Image:</p>
-              <img src={venueDetails.media[0]} alt="Venue" />
+              <img src={venueDetails.media[0]} alt="Venue" className="img-fluid" />
             </div>
           )}
         </div>

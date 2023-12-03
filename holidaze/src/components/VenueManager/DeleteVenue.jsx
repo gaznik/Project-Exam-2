@@ -1,6 +1,7 @@
 import { VENUES_URL } from '../../utils/constants.js';
 import { useParams } from 'react-router-dom';
 import apiRequest from '../../services/api/apiRequest'; 
+import '../../styles/buttons.css';
 
 function DeleteVenue() {
     let { id } = useParams();
@@ -22,7 +23,7 @@ function DeleteVenue() {
 
     return (
         <div>
-            <button onClick={deleteVenue}>Delete</button>
+            <button className="cancel-button" onClick={deleteVenue}>Delete</button>
         </div>
     )
 }
