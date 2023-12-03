@@ -33,11 +33,9 @@ function useCreateVenue() {
       const response = await createVenue(body);
       if (response) {
         console.log('Success');
-        // Handle success actions if needed
       }
     } catch (error) {
-      console.error('Something went wrong, please try again.', error);
-      // Handle error scenarios
+      console.error('Something went wrong, try again.', error);
     }
   };
 
