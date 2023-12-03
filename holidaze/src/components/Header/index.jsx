@@ -67,9 +67,9 @@ function Header() {
               )}
               {isLoggedIn() && (
                 <li className="nav-item">
-                  <button className="cancel-button" onClick={handleLogout}>
+                  <NavLink className="nav-lin logout-link" to="/" onClick={handleLogout}>
                     Logout
-                  </button>
+                  </NavLink>
                 </li>
               )}
             </ul>

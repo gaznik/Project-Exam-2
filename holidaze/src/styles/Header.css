@@ -1,3 +1,19 @@
-.profile-link{
-    font-size: 1.5em;
-}
+.navbar-brand {
+    color: transparent; 
+    font-size: 0; 
+    width: 150px; 
+    height: 50px;
+    background-image: url('https://www.svgrepo.com/show/225191/placeholder-house.svg'); 
+    background-size: contain; 
+    background-repeat: no-repeat; 
+  }
+  
+.navbar-nav .nav-item {
+    margin-right: 2em;
+  }
+  
+
+  .navbar-nav .nav-item:last-child {
+    margin-right: 3em; 
+  }
+  
