@@ -1,0 +1,49 @@
+
+/* Container for the entire profile page */
+.profile-page-container {
+    padding: 20px;
+   
+  }
+  
+  /* Header section styles */
+  .header-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    
+  }
+
+.profile-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333; 
+}
+
+/* Header section styles */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+/*Avatar image*/
+.profile-header img {
+  width: 200px; 
+  height: 200px;
+  border-radius: 50%; 
+}
+
+.update-avatar-section {
+  margin-top: 20px;
+}
+
+.update-avatar-section label {
+  font-weight: bold;
+}
+
+.update-avatar-section input[type='url'] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
