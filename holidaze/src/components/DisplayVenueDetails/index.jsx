@@ -15,6 +15,10 @@ function DisplayVenueDetails() {
   const username = loggedInUsername();
   const isOwner = owner === username;
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div>
       {isOwner && (
