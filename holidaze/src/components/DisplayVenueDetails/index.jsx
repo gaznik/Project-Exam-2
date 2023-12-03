@@ -1,11 +1,13 @@
 import React from 'react';
 import useVenueDetails from '../../hooks/useVenueDetails';
+import DeleteVenue from '../VenueManager/DeleteVenue';
 
 function DisplayVenueDetails() {
   const { venueDetails, loading } = useVenueDetails();
 
   return (
     <div>
+      <DeleteVenue />
       <h1>The Venue Details</h1>
       {loading ? (
         <p>Loading...</p>
