@@ -38,7 +38,7 @@ const LoginForm = () => {
           )}
         />
         <div>
-          <button type="submit">
+          <button className="native-button" type="submit">
             {isLoggingIn ? (
               <Spinner animation="border" role="status">
                 <span className="sr-only">Loading...</span>

@@ -128,7 +128,7 @@ function RegisterUserForm() {
         </div>
         <p>You can always change this later.</p>
         <div>
-          <button type="submit">Register</button>
+          <button className="native-button" type="submit">Register</button>
         </div>
       </form>
     </div>
