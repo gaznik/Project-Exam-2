@@ -8,4 +8,6 @@ export function retrieveAccessToken() {
   return accessToken;
 }
 
-
+export function loggedInUsername() {
+  return localStorage.getItem('username');
+}
