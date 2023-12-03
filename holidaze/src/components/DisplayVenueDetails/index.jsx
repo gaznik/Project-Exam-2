@@ -1,13 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useVenueDetails from '../../hooks/useVenueDetails';
 import DeleteVenue from '../VenueManager/DeleteVenue';
+import { useParams } from 'react-router-dom';
 
 function DisplayVenueDetails() {
+  const {id} = useParams();
   const { venueDetails, loading } = useVenueDetails();
 
   return (
     <div>
       <DeleteVenue />
+      <Link to={`/updateVenue/${id}`}>Update venue info</Link>
       <h1>The Venue Details</h1>
       {loading ? (
         <p>Loading...</p>
