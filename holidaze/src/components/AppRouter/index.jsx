@@ -14,7 +14,7 @@ function AppRouter() {
          <Route path="/" element={<HomePage />} /> 
          <Route path="/profile" element={<ProfilePage />} /> 
          <Route path="/venues/:id" element={<VenueDetails />} />
-         <Route path="/create-venue" element={CreateVenue} />
+         <Route path="/createVenue" element={<CreateVenue />} />
       </Routes> 
    
  );
