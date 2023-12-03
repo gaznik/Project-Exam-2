@@ -14,7 +14,6 @@ function RegisterUserForm() {
   const {registrationError, register } = useRegistration();
 
   const onSubmit = async (data) => {
-    setIsRegistering(true);
     try {
       const registrationResult = await register({
         name: data.name,
@@ -31,8 +30,6 @@ function RegisterUserForm() {
       }
     } catch (error) {
       console.error('Error during registration:', error);
-    } finally {
-      setIsRegistering(false);
     }
   };
 
