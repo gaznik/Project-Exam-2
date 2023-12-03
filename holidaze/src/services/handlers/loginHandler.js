@@ -15,7 +15,7 @@ try {
     const loginData = await response.json();
     const { name: username, avatar: userAvatar, accessToken } = loginData;
     storeUserData(accessToken, username, userAvatar);
-    setTimeout(redirectToProfile, 3000);
+    setTimeout(redirectToProfile, 1000);
     } else {
     const errorData = await response.json();
     console.error('Login failed:', errorData);

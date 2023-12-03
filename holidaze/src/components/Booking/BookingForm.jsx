@@ -76,7 +76,7 @@ function BookingForm({ selectedDates, setSelectedDates }) {
             />
           </div>
           <div>
-            <button type="submit">Book now</button>
+            <button className="native-button" type="submit">Book now</button>
           </div>
         </form>
       )}

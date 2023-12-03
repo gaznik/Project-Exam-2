@@ -6,6 +6,7 @@ import updateAvatar from '../../services/handlers/updateAvatarHandler';
 import MyBookings from './MyBookings';
 import BecomeVenueManager from '../../components/VenueManager/BecomeVenueManager';
 import DisplayMyVenues from '../../components/VenueManager/DisplayMyVenues';
+import '../../styles/DisplayProfile.css';
 
 function DisplayProfile() {
     const avatarPlaceholder = '/icons/user.png';
@@ -34,12 +35,12 @@ function DisplayProfile() {
     };
 
     return (
-        <div>
-            <div>
+        <div className="profile-container">
+            <div className="profile-header">
                 {avatar ? <img src={avatar} alt={name} /> : <img src={avatarPlaceholder} alt={name} />}
                 <h1>{name}</h1>
             </div>
-            <div>
+            <div className="update-avatar-section">
                 <form>
                     <label htmlFor='avatar'>Update avatar (url)</label>
                     <div>
