@@ -5,6 +5,7 @@ import HomePage from '../../pages/HomePage';
 import ProfilePage from '../../pages/ProfilePage';
 import VenueDetails from '../../pages/VenueDetails';
 import CreateVenue from '../../pages/CreateVenue';
+import UpdateVenue from '../../pages/UpdateVenue';
 
 
 function AppRouter() {
@@ -15,6 +16,7 @@ function AppRouter() {
          <Route path="/profile" element={<ProfilePage />} /> 
          <Route path="/venues/:id" element={<VenueDetails />} />
          <Route path="/createVenue" element={<CreateVenue />} />
+         <Route path="/updateVenue/:id" element={<UpdateVenue />} />
       </Routes> 
    
  );
