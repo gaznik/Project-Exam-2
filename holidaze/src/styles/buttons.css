@@ -11,3 +11,7 @@
 .native-button:hover {
     background-color: #0056b3; 
   }
+
+  .cancel-button {
+    background-color: #FD5B53;
+  }
