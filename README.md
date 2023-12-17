@@ -5,7 +5,7 @@
 This is an accomodation booking website build in relation to the Project Exam 2 from Noroff. 
 
 ## Deployed site
-Netlify website: (https://rainbow-queijadas-c6ae4a.netlify.app/)
+Netlify website: https://rainbow-queijadas-c6ae4a.netlify.app/
 
 ## Description
 
